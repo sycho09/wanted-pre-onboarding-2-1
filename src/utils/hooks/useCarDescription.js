@@ -43,12 +43,10 @@ export default function useCarDescription(carId) {
         });
         setIsLoading(false);
       }
-      console.log(isLoading);
     }
   };
 
   useEffect(() => {
-    console.log('adfsfds');
     getCarList();
   }, []);
 
