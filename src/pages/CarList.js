@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useThemeContext } from '../utils/ThemeContext';
 import useGetList from '../utils/hooks/useGetList';
+import ErrorMessage from '../components/atoms/ErrorMessage';
+import Category from '../components/organisms/Category';
 
 function CarList() {
   const { list } = useThemeContext();
@@ -21,7 +23,8 @@ function CarList() {
 
   return (
     <>
-      {isLoading && <p>불러오는 중입니다</p>}
+      <Category />
+      {isLoading && <ErrorMessage>불러오는 중입니다</ErrorMessage>}
       {!isLoading && isSuccess && (
         <div style={{ padding: '2rem 1rem' }}>
           {list.map((el) => (
@@ -40,7 +43,9 @@ function CarList() {
         </div>
       )}
 
-      {!isLoading && isSuccess && list.length < 1 && <p>차량이 없습니다</p>}
+      {!isLoading && isSuccess && list.length < 1 && (
+        <ErrorMessage>차량이 없습니다</ErrorMessage>
+      )}
     </>
   );
 }
