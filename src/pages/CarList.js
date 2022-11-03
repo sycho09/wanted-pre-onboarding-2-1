@@ -4,6 +4,9 @@ import { useThemeContext } from '../utils/ThemeContext';
 import useGetList from '../utils/hooks/useGetList';
 import ErrorMessage from '../components/atoms/ErrorMessage';
 import Category from '../components/organisms/Category';
+import MetaBox from '../components/molecules/MetaBox';
+import { FUEL_TYPE, SEGMENT } from '../utils/types';
+import CarItem from '../components/organisms/CarItem';
 
 function CarList() {
   const { list } = useThemeContext();
@@ -17,7 +20,6 @@ function CarList() {
   useEffect(() => {
     if (isSuccess) {
       console.log(isLoading);
-      console.log('list', list);
     }
   }, [isSuccess]);
 
@@ -25,24 +27,34 @@ function CarList() {
     <>
       <Category />
       {isLoading && <ErrorMessage>불러오는 중입니다</ErrorMessage>}
-      {!isLoading && isSuccess && (
-        <div style={{ padding: '2rem 1rem' }}>
-          {list.map((el) => (
-            <>
-              <button type='button' onClick={() => navigate(`/${el.id}`)}>
-                이동하기
+      <div>
+        <MetaBox name='전체차량' brand='B2C 차량 대여 서비스' />
+        {!isLoading && isSuccess && (
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+          >
+            {list.map((el) => (
+              <button
+                type='button'
+                style={{ borderBottom: '1px solid black' }}
+                onClick={() => navigate(`/${el.id}`)}
+              >
+                <CarItem
+                  brand={el.attribute.brand}
+                  name={el.attribute.name}
+                  segment={SEGMENT[el.attribute.segment]}
+                  fuelType={FUEL_TYPE[el.attribute.fuelType]}
+                  amount={el.amount.toLocaleString()}
+                  thumbnail={el.attribute.imageUrl}
+                />
               </button>
-              <p>{el.attribute.brand}</p>
-              <p>{el.attribute.name}</p>
-              <p>{el.attribute.segment}</p>
-              <p>{el.attribute.fuelType}</p>
-              <img alt={el.id} src={el.attribute.imageUrl} width='100px' />
-              <p>{el.amount}</p>
-            </>
-          ))}
-        </div>
-      )}
-
+            ))}
+          </div>
+        )}
+      </div>
       {!isLoading && isSuccess && list.length < 1 && (
         <ErrorMessage>차량이 없습니다</ErrorMessage>
       )}
