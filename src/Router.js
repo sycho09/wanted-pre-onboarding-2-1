@@ -6,7 +6,7 @@ import Layout from './components/organisms/Layout';
 
 function Router() {
   return (
-    <BrowserRouter basename='/wanted-pre-onboarding-2-1'>
+    <BrowserRouter basename='wanted-pre-onboarding-2-1'>
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<CarList />} />
