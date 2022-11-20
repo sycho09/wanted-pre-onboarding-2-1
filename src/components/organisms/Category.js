@@ -29,6 +29,7 @@ export default function Category() {
       </CategoryItem>
       {segmentValues.map((el, i) => (
         <CategoryItem
+          key={el}
           isSelected={selected === segmentKeys[i]}
           onClick={() => selectCarCategory(i)}
         >

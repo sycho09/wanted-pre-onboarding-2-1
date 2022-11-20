@@ -38,8 +38,8 @@ function Layout() {
   return (
     <>
       <WebViewContainer>모바일 환경에서 사용해주세요</WebViewContainer>
-      <Header value={pageName} />
       <ViewContainer>
+        <Header value={pageName} />
         <Outlet />
       </ViewContainer>
     </>

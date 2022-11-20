@@ -17,12 +17,6 @@ function CarList() {
     getCarList();
   }, []);
 
-  useEffect(() => {
-    if (isSuccess) {
-      console.log(isLoading);
-    }
-  }, [isSuccess]);
-
   return (
     <>
       <Category />
@@ -38,6 +32,7 @@ function CarList() {
           >
             {list.map((el) => (
               <button
+                key={el.id}
                 type='button'
                 style={{ borderBottom: '1px solid black' }}
                 onClick={() => navigate(`/${el.id}`)}
