@@ -18,12 +18,12 @@ export default function CarDescription({ ...selected }) {
     fuelType,
     imageUrl,
     amount,
-    createdAt,
+    startDate,
     insurance,
     additionalProducts
   } = selected;
 
-  const { dates, day, month, getdate } = useGetDate(createdAt);
+  const { dates, day, month, getdate } = useGetDate(startDate);
 
   return (
     <DescriptionWrapper>
@@ -42,11 +42,12 @@ export default function CarDescription({ ...selected }) {
       />
       <SubTitle>보험</SubTitle>
       {insurance.map((el) => (
-        <DetailInfoBox label={el.name} text={el.description} />
+        <DetailInfoBox key={el.name} label={el.name} text={el.description} />
       ))}
       <SubTitle>추가상품</SubTitle>
       {additionalProducts.map((el) => (
         <DetailInfoBox
+          key={el.name}
           label={el.name}
           text={`월 ${el.amount.toLocaleString()}만원`}
         />

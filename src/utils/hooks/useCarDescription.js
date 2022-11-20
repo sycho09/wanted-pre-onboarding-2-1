@@ -23,7 +23,7 @@ export default function useCarDescription(carId) {
 
       if (selected) {
         const {
-          createdAt,
+          startDate,
           attribute: { brand, name, segment, fuelType, imageUrl },
           amount,
           insurance,
@@ -37,7 +37,7 @@ export default function useCarDescription(carId) {
           fuelType,
           imageUrl,
           amount,
-          createdAt,
+          startDate,
           insurance,
           additionalProducts
         });
